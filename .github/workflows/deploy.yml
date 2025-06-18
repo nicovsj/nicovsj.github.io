@@ -29,3 +29,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4 # The GitHub Pages deployment action
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
