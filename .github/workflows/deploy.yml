@@ -1,0 +1,31 @@
+name: Deploy Astro site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # This workflow runs when you push to the 'main' branch
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab on GitHub
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # Use a Linux runner for the build
+    permissions:
+      contents: write # To allow actions/checkout and upload-pages-artifact
+      pages: write # To allow actions/deploy-pages to deploy to GitHub Pages
+      id-token: write # Required for OpenID Connect (OIDC) authentication with GitHub Pages
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies, build, and upload your site
+        uses: withastro/action@v2 # Use the official Astro GitHub Action
+        # Optional inputs for withastro/action:
+        # with:
+        #   path: . # The root location of your Astro project inside the repository. (Defaults to .)
+        #   node-version: 20 # The specific version of Node that should be used. (Defaults to 20)
+        #   package-manager: npm # The package manager. Automatically detected, but can be specified.
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # The GitHub Pages deployment action
