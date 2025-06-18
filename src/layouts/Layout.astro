@@ -1,0 +1,109 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Academic CV and Research Profile" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/publications">Publications</a>
+        <a href="/research">Research</a>
+        <a href="/cv">CV</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>&copy; {new Date().getFullYear()} - All rights reserved</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #f6f6f6;
+    background-size: 224px;
+  }
+
+  body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .site-header {
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  nav a:hover {
+    color: rgb(var(--accent));
+  }
+
+  main {
+    min-height: calc(100vh - 200px);
+  }
+
+  footer {
+    margin-top: 2rem;
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid #eee;
+    color: #666;
+  }
+</style> 
