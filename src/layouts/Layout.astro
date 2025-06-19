@@ -16,21 +16,27 @@ const { title, description = 'Academic CV and Research Profile' } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+
+    <!-- LaTeX.css -->
+    <link rel="stylesheet" href="https://latex.vercel.app/style.css" />
+
+    <!-- MathJax for mathematical expressions -->
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- Syntax highlighting (optional) -->
+    <link rel="stylesheet" href="https://latex.vercel.app/prism/prism.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
   </head>
   <body>
     <header class="site-header">
       <nav>
         <a href="/">Home</a>
         <a href="/publications">Publications</a>
-        <a href="/research">Research</a>
         <a href="/cv">CV</a>
-        <a href="/contact">Contact</a>
       </nav>
     </header>
     <main>
@@ -43,55 +49,22 @@ const { title, description = 'Academic CV and Research Profile' } = Astro.props;
 </html>
 
 <style is:global>
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
-    background: #f6f6f6;
-    background-size: 224px;
-  }
-
-  body {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    color: #333;
-    line-height: 1.8;
-    background: white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    min-height: 100vh;
-  }
-
+  /* Custom styles to work with LaTeX.css */
   .site-header {
     padding: 2rem 0;
     margin-bottom: 3rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-border);
   }
 
   nav {
     display: flex;
     gap: 2rem;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   nav a {
-    color: #333;
+    color: var(--color-text);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
@@ -99,48 +72,29 @@ const { title, description = 'Academic CV and Research Profile' } = Astro.props;
   }
 
   nav a:hover {
-    color: rgb(var(--accent));
+    color: var(--color-accent);
   }
 
   main {
     min-height: calc(100vh - 200px);
-    padding: 0 1rem;
   }
 
   footer {
     margin-top: 3rem;
     padding: 2rem 0;
     text-align: center;
-    border-top: 1px solid #eee;
-    color: #666;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
   }
 
-  h1,
-  h2,
-  h3 {
-    font-weight: 600;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    margin-bottom: 1.5rem;
-  }
-
-  a {
-    color: rgb(var(--accent));
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
+  /* Responsive design */
   @media (max-width: 900px) {
-    body {
-      padding: 1rem;
-      margin: 0;
+    nav {
+      gap: 1rem;
+    }
+
+    nav a {
+      font-size: 1rem;
     }
   }
 </style>
-
