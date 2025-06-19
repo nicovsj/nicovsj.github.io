@@ -4,10 +4,10 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Academic CV and Research Profile" } = Astro.props;
+const { title, description = 'Academic CV and Research Profile' } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,9 +16,12 @@ const { title, description = "Academic CV and Research Profile" } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="site-header">
@@ -65,22 +68,25 @@ const { title, description = "Academic CV and Research Profile" } = Astro.props;
   }
 
   body {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem;
     color: #333;
-    line-height: 1.6;
+    line-height: 1.8;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
   }
 
   .site-header {
     padding: 2rem 0;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     border-bottom: 1px solid #eee;
   }
 
   nav {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     justify-content: center;
   }
 
@@ -89,6 +95,7 @@ const { title, description = "Academic CV and Research Profile" } = Astro.props;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
+    font-size: 1.1rem;
   }
 
   nav a:hover {
@@ -97,13 +104,43 @@ const { title, description = "Academic CV and Research Profile" } = Astro.props;
 
   main {
     min-height: calc(100vh - 200px);
+    padding: 0 1rem;
   }
 
   footer {
-    margin-top: 2rem;
+    margin-top: 3rem;
     padding: 2rem 0;
     text-align: center;
     border-top: 1px solid #eee;
     color: #666;
   }
-</style> 
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  a {
+    color: rgb(var(--accent));
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 900px) {
+    body {
+      padding: 1rem;
+      margin: 0;
+    }
+  }
+</style>
+
