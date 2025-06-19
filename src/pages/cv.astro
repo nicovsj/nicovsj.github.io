@@ -10,47 +10,39 @@ const REPO_NAME = 'cv'; // your CV repository name
   <h1>Curriculum Vitae</h1>
 
   <section class="cv-section">
-    <p>You can download my latest CV in PDF format:</p>
-    <div class="cv-download">
-      <a
+    <p>
+      You can download <a
         href={`https://github.com/${GITHUB_USERNAME}/${REPO_NAME}/releases/latest/download/cv.pdf`}
-        class="download-button"
         target="_blank"
-        rel="noopener noreferrer"
-      >
-        Download CV (PDF)
-      </a>
-      <p class="last-updated">
-        Last updated: <span id="last-updated">Loading...</span>
-      </p>
-    </div>
+        rel="noopener noreferrer">my latest CV</a
+      > in PDF format.
+    </p>
+    <p class="last-updated">
+      Last updated: <span id="last-updated">Loading...</span>
+    </p>
   </section>
 </Layout>
 
 <style>
+  :root {
+    --accent: #949494;
+    --accent-dark: #666666;
+  }
+
   .cv-section {
     margin: 2rem 0;
   }
 
   .cv-download {
-    margin: 2rem 0;
-    text-align: center;
+    /* Removed as download button is gone */
   }
 
   .download-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: rgb(var(--accent));
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 500;
-    transition: background-color 0.2s;
+    /* Removed as download button is gone */
   }
 
   .download-button:hover {
-    background-color: rgb(var(--accent-dark));
-    text-decoration: none;
+    /* Removed as download button is gone */
   }
 
   .last-updated {
