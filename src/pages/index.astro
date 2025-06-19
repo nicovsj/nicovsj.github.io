@@ -1,148 +1,179 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { siGithub, siLinkerd } from 'simple-icons';
 ---
 
 <Layout title="Home | Academic CV">
-  <section class="hero">
+  <article class="indent-pars">
     <div class="profile">
       <div class="profile-image">
         <img src="/images/profile.png" alt="Nicolás Van Sint Jan" />
       </div>
       <div class="profile-content">
-        <h1>Nicolás Van Sint Jan</h1>
-        <p class="title">PhD Student</p>
-        <p class="institution">IRIF</p>
+        <div class="name">Nicolás Van Sint Jan</div>
+        <div class="title">
+          PhD Candidate @ <a href="https://www.irif.fr" target="_blank">IRIF</a>
+        </div>
+        <div class="contact-block">
+          <div class="contact-section">
+            <div class="contact-label">Contact</div>
+            <div class="contact-detail">nicovsj [at] irif . fr</div>
+          </div>
+          <div class="contact-section">
+            <div class="contact-label">Address</div>
+            <div class="contact-detail">Office 3035</div>
+            <div class="contact-detail">8 Place Aurélie Nemours</div>
+            <div class="contact-detail">75013 Paris</div>
+          </div>
+        </div>
         <div class="contact-info">
-          <p>📧 nicovsj [at] irif . fr</p>
-          <p>
-            🔗 <a href="https://github.com/nicovsj" target="_blank">GitHub</a> |
-            <a href="https://linkedin.com/in/nicovsj" target="_blank"
-              >LinkedIn</a
-            >
-          </p>
+          <div class="contact-section">
+            <div class="contact-label">Links</div>
+            <div class="contact-detail">
+              <a
+                href="https://github.com/nicovsj"
+                target="_blank"
+                aria-label="GitHub"
+              >
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill={`#${siGithub.hex}`}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>GitHub</title>
+                  <path d={siGithub.path}></path>
+                </svg>
+              </a>
+              <a
+                href="https://linkedin.com/in/nicovsj"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>LinkedIn</title>
+                  <path d={siLinkerd.path}></path>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <section class="about">
-      <h2>About</h2>
+    <div class="abstract">
+      <h2>Abstract</h2>
       <p>
-        I'm a PhD student in Theoretical Computer Science at the <a
+        I'm a PhD candidate in Computer Science at <a
           href="https://www.irif.fr"
           target="_blank">IRIF</a
-        > in Paris, France. I'm under the supervision of <a
+        > in Paris, under the supervision of <a
           href="http://libk.in/"
           target="_blank">Leonid Libkin</a
         > and <a href="https://www.irif.fr/~cristina/" target="_blank"
           >Cristina Sirangelo</a
         >. My research interests are in the area of database theory, with a
-        focus on the operational semantics of query languages.
+        focus on the semantics of query languages. I have experience in automata
+        theory, enumeration algorithms, and full-stack development.
       </p>
-    </section>
-  </section>
+    </div>
 
-  <style>
-    .hero {
-      margin-bottom: 3rem;
-    }
-
-    .profile {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .profile-image {
-      flex-shrink: 0;
-      width: 200px;
-      height: 200px;
-      overflow: hidden;
-      border-radius: 50%;
-    }
-
-    .profile-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .placeholder-image {
-      width: 200px;
-      height: 200px;
-      background: #eee;
-      border-radius: 50%;
-    }
-
-    .profile-content h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .title {
-      font-size: 1.5rem;
-      color: #666;
-      margin-bottom: 0.25rem;
-    }
-
-    .institution {
-      font-size: 1.2rem;
-      color: #666;
-      margin-bottom: 1rem;
-    }
-
-    .contact-info {
-      margin-top: 1rem;
-    }
-
-    .contact-info a {
-      color: rgb(var(--accent));
-      text-decoration: none;
-    }
-
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      margin-bottom: 3rem;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      color: #333;
-    }
-
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .highlight-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .highlight-card h3 {
-      color: rgb(var(--accent));
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 768px) {
+    <style>
       .profile {
-        flex-direction: column;
-        text-align: center;
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        margin-bottom: 3rem;
+      }
+
+      .profile-image {
+        flex-shrink: 0;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 1px solid var(--color-border);
+      }
+
+      .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .profile-content {
+        display: block;
+        gap: 0.2rem;
+      }
+
+      .name {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      .title {
+        font-size: 1.4rem;
+        color: var(--color-text-muted);
+      }
+
+      .institution {
+        font-size: 1.2rem;
+        color: var(--color-text-muted);
+        margin-bottom: 1rem;
+      }
+
+      .contact-block {
+        margin-top: 1rem;
+      }
+
+      .contact-section {
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-label {
+        font-weight: bold;
+        margin-bottom: 0.2rem;
+      }
+
+      .contact-detail {
+        margin-left: 0.5rem;
       }
 
       .contact-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        margin-top: 1rem;
       }
-    }
-  </style>
+
+      .contact-info a {
+        color: var(--color-accent);
+        text-decoration: none;
+      }
+
+      .contact-info a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .profile {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .contact-info {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </article>
 </Layout>
