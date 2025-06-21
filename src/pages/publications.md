@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Layout.astro
-title: Publications | Academic CV
+title: Publications | Nicolás Van Sint Jan
 ---
 
 # Publications
