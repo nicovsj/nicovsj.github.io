@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 
 // Replace with your GitHub username and repository name
 const GITHUB_USERNAME = 'nicovsj';
@@ -11,14 +11,14 @@ const REPO_NAME = 'cv'; // your CV repository name
 
   <section class="cv-section">
     <p>
-      You can download <a
+      Vous pouvez télécharger <a
         href={`https://github.com/${GITHUB_USERNAME}/${REPO_NAME}/releases/latest/download/cv.pdf`}
         target="_blank"
-        rel="noopener noreferrer">my latest CV</a
-      > in PDF format.
+        rel="noopener noreferrer">mon CV le plus récent</a
+      > au format PDF.
     </p>
     <p class="last-updated">
-      Last updated: <span id="last-updated">Loading...</span>
+      Dernière mise à jour : <span id="last-updated">Chargement...</span>
     </p>
   </section>
 </Layout>
@@ -63,12 +63,12 @@ const REPO_NAME = 'cv'; // your CV repository name
       const date = new Date(data.published_at);
       const element = document.getElementById('last-updated');
       if (element) {
-        element.textContent = date.toLocaleDateString();
+        element.textContent = date.toLocaleDateString('fr-FR');
       }
     } catch (error) {
       const element = document.getElementById('last-updated');
       if (element) {
-        element.textContent = 'Unknown';
+        element.textContent = 'Inconnu';
       }
     }
   }
