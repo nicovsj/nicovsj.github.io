@@ -5,6 +5,7 @@ import {
   useTranslatedPath,
 } from '../i18n/utils';
 import LanguagePicker from '../components/LanguagePicker.astro';
+import DarkModeToggle from '../components/DarkModeToggle.astro';
 
 interface Props {
   title: string;
@@ -40,6 +41,17 @@ const translatePath = useTranslatedPath(lang);
     <!-- Syntax highlighting (optional) -->
     <link rel="stylesheet" href="https://latex.vercel.app/prism/prism.css" />
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+
+    <!-- Theme initialization script -->
+    <script is:inline>
+      // Initialize theme before page loads to prevent flash
+      (function () {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+          document.body.classList.add('latex-dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -49,7 +61,10 @@ const translatePath = useTranslatedPath(lang);
           <a href={translatePath('/publications')}>{t('nav.publications')}</a>
           <a href={translatePath('/cv')}>{t('nav.cv')}</a>
         </div>
-        <LanguagePicker />
+        <div class="nav-controls">
+          <DarkModeToggle />
+          <LanguagePicker />
+        </div>
       </nav>
     </header>
     <main>
@@ -81,6 +96,12 @@ const translatePath = useTranslatedPath(lang);
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
+  }
+
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   nav a {
@@ -116,6 +137,10 @@ const translatePath = useTranslatedPath(lang);
 
     .nav-links {
       gap: 1rem;
+    }
+
+    .nav-controls {
+      gap: 0.5rem;
     }
 
     nav a {
