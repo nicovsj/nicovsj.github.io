@@ -1,12 +1,23 @@
 ---
-import { getLangFromUrl, useTranslatedPath } from '../i18n/utils';
+import { getLangFromUrl } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
-const translatePath = useTranslatedPath(lang);
+const otherLang = lang === 'en' ? 'fr' : 'en';
+
+// Get the current path after the language prefix
+const pathParts = Astro.url.pathname.split('/').filter(Boolean); // e.g. ['en', 'publications']
+let newPath = '';
+if (pathParts.length > 1) {
+  // e.g. /en/publications -> /fr/publications
+  newPath = `/${otherLang}/${pathParts.slice(1).join('/')}`;
+} else {
+  // e.g. /en/ or /fr/ -> /fr/ or /en/
+  newPath = `/${otherLang}/`;
+}
 ---
 
 <div class="language-toggle">
   <a
-    href={translatePath('/', lang === 'en' ? 'fr' : 'en')}
+    href={newPath}
     class="language-toggle-btn"
     aria-label={`Switch to ${lang === 'en' ? 'French' : 'English'}`}
   >
