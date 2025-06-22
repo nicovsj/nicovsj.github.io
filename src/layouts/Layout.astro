@@ -4,7 +4,7 @@ import {
   useTranslations,
   useTranslatedPath,
 } from '../i18n/utils';
-import LanguagePicker from '../components/LanguagePicker.astro';
+import LanguageToggle from '../components/LanguageToggle.astro';
 import DarkModeToggle from '../components/DarkModeToggle.astro';
 
 interface Props {
@@ -63,7 +63,7 @@ const translatePath = useTranslatedPath(lang);
         </div>
         <div class="nav-controls">
           <DarkModeToggle />
-          <LanguagePicker />
+          <LanguageToggle />
         </div>
       </nav>
     </header>
