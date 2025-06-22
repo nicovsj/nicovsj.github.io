@@ -1,4 +1,4 @@
-import { ui, defaultLang, showDefaultLang, routes } from './ui';
+import { ui, defaultLang, routes } from './ui';
 
 export function getLangFromUrl(url: URL) {
   const [, lang] = url.pathname.split('/');
@@ -14,8 +14,8 @@ export function useTranslations(lang: keyof typeof ui) {
 
 export function useTranslatedPath(lang: keyof typeof ui) {
   return function translatePath(path: string, l: string = lang) {
-    // For now, we'll keep it simple without route translation
-    return !showDefaultLang && l === defaultLang ? path : `/${l}${path}`;
+    // Always include language prefix since English pages are at /en/
+    return `/${l}${path}`;
   };
 }
 
