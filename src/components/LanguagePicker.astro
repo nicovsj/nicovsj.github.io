@@ -59,7 +59,7 @@ const translatePath = useTranslatedPath(lang);
 
   .language-toggle:hover {
     background: var(--color-accent);
-    color: rgb(135, 135, 135);
+    color: var(--color-text-muted);
     border-color: var(--color-accent);
   }
 
@@ -77,7 +77,7 @@ const translatePath = useTranslatedPath(lang);
     right: 0;
     margin-top: 0.25rem;
     padding: 0.25rem 0;
-    background: white;
+    background: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -88,6 +88,11 @@ const translatePath = useTranslatedPath(lang);
     transform: translateY(-10px);
     transition: all 0.2s;
     z-index: 1000;
+  }
+
+  /* Dark mode box shadow */
+  :global(body.latex-dark) .language-menu {
+    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1);
   }
 
   .language-picker:hover .language-menu,
@@ -113,12 +118,12 @@ const translatePath = useTranslatedPath(lang);
 
   .language-menu a:hover {
     background: var(--color-accent);
-    color: rgb(135, 135, 135);
+    color: var(--color-text-muted);
   }
 
   .language-menu a.active {
     background: var(--color-accent);
-    color: rgb(135, 135, 135);
+    color: var(--color-text-muted);
     font-weight: 500;
   }
 
