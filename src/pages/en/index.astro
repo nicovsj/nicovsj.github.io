@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SocialIcon from '../../components/SocialIcon.astro';
+import ContactSection from '../../components/ContactSection.astro';
 ---
 
 <Layout title="About | Nicolás Van Sint Jan">
@@ -14,39 +14,7 @@ import SocialIcon from '../../components/SocialIcon.astro';
         <div class="title">
           PhD Candidate @ <a href="https://www.irif.fr" target="_blank">IRIF</a>
         </div>
-        <div class="contact-block">
-          <div class="contact-section">
-            <div class="contact-label">Contact</div>
-            <div class="contact-detail">nicovsj [at] irif . fr</div>
-          </div>
-          <div class="contact-section">
-            <div class="contact-label">Address</div>
-            <div class="contact-detail">Office 3035</div>
-            <div class="contact-detail">8 Place Aurélie Nemours</div>
-            <div class="contact-detail">75013 Paris</div>
-          </div>
-        </div>
-        <div class="contact-info">
-          <div class="contact-section">
-            <div class="contact-label">Links</div>
-            <div class="contact-detail">
-              <a
-                href="https://github.com/nicovsj"
-                target="_blank"
-                aria-label="GitHub"
-              >
-                <SocialIcon type="github" />
-              </a>
-              <a
-                href="https://linkedin.com/in/nicovsj"
-                target="_blank"
-                aria-label="LinkedIn"
-              >
-                <SocialIcon type="linkedin" />
-              </a>
-            </div>
-          </div>
-        </div>
+        <ContactSection lang="en" />
       </div>
     </div>
 
@@ -112,48 +80,10 @@ import SocialIcon from '../../components/SocialIcon.astro';
         margin-bottom: 1rem;
       }
 
-      .contact-block {
-        margin-top: 1rem;
-      }
-
-      .contact-section {
-        margin-bottom: 0.5rem;
-      }
-
-      .contact-label {
-        font-weight: bold;
-        margin-bottom: 0.2rem;
-      }
-
-      .contact-detail {
-        margin-left: 0.5rem;
-      }
-
-      .contact-info {
-        margin-top: 1rem;
-      }
-
-      .contact-info a {
-        color: var(--color-accent);
-        text-decoration: none;
-        display: inline-block;
-        margin-right: 0.5rem;
-      }
-
-      .contact-info a:hover {
-        text-decoration: none;
-      }
-
       @media (max-width: 768px) {
         .profile {
           flex-direction: column;
           text-align: center;
-        }
-
-        .contact-info {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
         }
       }
     </style>

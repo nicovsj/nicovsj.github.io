@@ -1,0 +1,189 @@
+---
+import { useTranslations } from '../i18n/utils';
+import SocialIcon from './SocialIcon.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as 'en' | 'fr');
+---
+
+<div class="contact-block">
+  <div class="contact-section">
+    <div class="contact-label">{t('profile.contact')}</div>
+    <div class="contact-detail">
+      <a href="#" id="email-link" aria-label="Send e-mail">{t('email.me')}</a>
+      {t('email.or')}
+      <button
+        id="copy-email-btn"
+        class="copy-btn"
+        type="button"
+        aria-label={t('email.copy')}>{t('email.copy')}</button
+      >
+    </div>
+  </div>
+  <div class="contact-section">
+    <div class="contact-label">{t('profile.address')}</div>
+    <a
+      href="https://maps.app.goo.gl/J7PUhjrXpw3QkfDi7"
+      target="_blank"
+      class="address-link"
+    >
+      <div class="contact-detail">Office 3035</div>
+      <div class="contact-detail">8 Place Aurélie Nemours</div>
+      <div class="contact-detail">75013 Paris</div>
+    </a>
+  </div>
+</div>
+<div class="contact-info">
+  <div class="contact-section">
+    <div class="contact-label">{t('profile.links')}</div>
+    <div class="social-links">
+      <a href="https://github.com/nicovsj" target="_blank" aria-label="GitHub">
+        <SocialIcon type="github" />
+      </a>
+      <a
+        href="https://linkedin.com/in/nicovsj"
+        target="_blank"
+        aria-label="LinkedIn"
+      >
+        <SocialIcon type="linkedin" />
+      </a>
+      <a
+        href="https://orcid.org/my-orcid?orcid=0009-0005-2933-528X"
+        target="_blank"
+        aria-label="ORCID"
+      >
+        <SocialIcon type="orcid" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .contact-block {
+    margin-top: 1rem;
+  }
+
+  .contact-section {
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-label {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+  }
+
+  .address-link {
+    color: inherit;
+    display: block;
+  }
+
+  .address-link:hover {
+    color: var(--color-accent);
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    margin-left: 0.5rem;
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .copy-btn {
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 0.3em;
+    padding: 0.2em 0.6em;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 500;
+    color: var(--color-accent);
+    transition:
+      background 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    white-space: nowrap;
+  }
+  .copy-btn:active,
+  .copy-btn:focus {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  .contact-info {
+    margin-top: 1rem;
+  }
+
+  .contact-info a {
+    color: var(--color-accent);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .contact-info a:hover {
+    text-decoration: none;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Email obfuscation
+    const emailLink = document.getElementById('email-link');
+    if (emailLink) {
+      // Construct email address from parts to obfuscate it
+      const emailParts = ['nicovsj', '@', 'irif', '.', 'fr'];
+      const email = emailParts.join('');
+
+      // Set the mailto href
+      emailLink.href = 'mailto:' + email;
+
+      // Add click handler for additional protection
+      emailLink.addEventListener('click', function () {
+        // The mailto link will handle the email client opening
+      });
+    }
+
+    // Copy email functionality
+    const btn = document.getElementById('copy-email-btn');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        // Construct email address for copying
+        const emailParts = ['nicovsj', '@', 'irif', '.', 'fr'];
+        const email = emailParts.join('');
+
+        navigator.clipboard.writeText(email).then(() => {
+          const originalText = btn.textContent;
+          // Get the current language from the URL
+          const lang = window.location.pathname.startsWith('/fr/')
+            ? 'fr'
+            : 'en';
+          const copiedText = lang === 'fr' ? 'Copié !' : 'Copied!';
+          btn.textContent = copiedText;
+          btn.disabled = true;
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+          }, 1500);
+        });
+      });
+    }
+  });
+</script>

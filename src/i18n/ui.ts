@@ -18,6 +18,10 @@ export const ui = {
     'profile.address': 'Address',
     'profile.links': 'Links',
     'abstract.title': 'Abstract',
+    'email.me': 'E-mail me',
+    'email.copy': 'Copy e-mail',
+    'email.copied': 'Copied!',
+    'email.or': 'or',
   },
   fr: {
     'nav.home': 'Accueil',
@@ -30,6 +34,10 @@ export const ui = {
     'profile.address': 'Adresse',
     'profile.links': 'Liens',
     'abstract.title': 'Résumé',
+    'email.me': "M'écrire",
+    'email.copy': 'Copier e-mail',
+    'email.copied': 'Copié !',
+    'email.or': 'ou',
   },
 } as const;
 
