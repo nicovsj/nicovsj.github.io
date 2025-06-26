@@ -4,40 +4,45 @@
 
 <div class="dark-mode-toggle">
   <button class="theme-toggle" aria-label="Toggle dark mode" id="theme-toggle">
-    <svg
-      class="sun-icon"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-    <svg
-      class="moon-icon"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
+    <div class="icon-container">
+      <!-- Sun icon with rays -->
+      <svg
+        class="sun-icon"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+
+      <!-- Moon icon -->
+      <svg
+        class="moon-icon"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </div>
   </button>
 </div>
 
@@ -50,56 +55,138 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: none;
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
+    width: 44px;
+    height: 44px;
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    border-radius: 50%;
     color: var(--color-text);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    overflow: hidden;
   }
 
   .theme-toggle:hover {
     background: var(--color-accent);
-    color: rgb(135, 135, 135);
+    color: var(--color-bg);
     border-color: var(--color-accent);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .theme-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .icon-container {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .sun-icon,
   .moon-icon {
-    transition:
-      opacity 0.2s,
-      transform 0.2s;
-  }
-
-  .moon-icon {
-    opacity: 0;
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Dark mode styles - show moon icon when latex-dark class is present */
-  :global(body.latex-dark) .sun-icon {
-    opacity: 0;
-  }
-
-  :global(body.latex-dark) .moon-icon {
-    opacity: 1;
-  }
-
-  /* Light mode styles - show sun icon when latex-dark class is not present */
+  /* Light mode - sun visible, moon hidden */
   :global(body:not(.latex-dark)) .sun-icon {
     opacity: 1;
+    transform: rotate(0deg) scale(1);
   }
 
   :global(body:not(.latex-dark)) .moon-icon {
     opacity: 0;
+    transform: rotate(-90deg) scale(0.8);
+  }
+
+  /* Dark mode - moon visible, sun hidden */
+  :global(body.latex-dark) .sun-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.8);
+  }
+
+  :global(body.latex-dark) .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  /* Animation for sun rays */
+  :global(body:not(.latex-dark)) .sun-icon line {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  :global(body.latex-dark) .sun-icon line {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  /* Smooth background transition */
+  .theme-toggle {
+    background: linear-gradient(
+      135deg,
+      var(--color-bg) 0%,
+      var(--color-bg-secondary, var(--color-bg)) 100%
+    );
+  }
+
+  :global(body.latex-dark) .theme-toggle {
+    background: linear-gradient(
+      135deg,
+      var(--color-bg) 0%,
+      var(--color-bg-secondary, var(--color-bg)) 100%
+    );
+  }
+
+  /* Add a subtle glow effect */
+  .theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+      45deg,
+      transparent,
+      var(--color-accent),
+      transparent
+    );
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .theme-toggle:hover::before {
+    opacity: 0.3;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+    }
+
+    .icon-container {
+      width: 18px;
+      height: 18px;
+    }
   }
 </style>
 
 <script>
-  // Dark mode toggle functionality using LaTeX.css approach
+  // Enhanced dark mode toggle functionality with smooth animations
   function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
@@ -124,9 +211,17 @@
           newTheme
         );
 
-        // Toggle the latex-dark class
-        body.classList.toggle('latex-dark');
-        localStorage.setItem('theme', newTheme);
+        // Add a subtle click animation
+        themeToggle.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          themeToggle.style.transform = '';
+        }, 150);
+
+        // Toggle the latex-dark class with a slight delay for smooth animation
+        setTimeout(() => {
+          body.classList.toggle('latex-dark');
+          localStorage.setItem('theme', newTheme);
+        }, 100);
       });
     } else {
       console.error('Theme toggle button not found');
