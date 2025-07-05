@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import PhotoOuterFrame from '../../components/PhotoOuterFrame.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -8,64 +9,82 @@ const t = useTranslations(lang);
 // Sample photography data - you can replace this with your actual photos
 const photos = [
   {
-    id: 1,
-    src: 'https://picsum.photos/800/600?random=1',
-    alt: 'Mountain landscape',
-    title: 'Mountain Vista',
-    description: 'A breathtaking mountain landscape at sunset',
-    camera: 'Leica M6',
-    film: 'Kodak Portra 400',
-    size: 'large', // large, medium, small
+    src: '/images/photography/000030160003.jpg',
+    alt: 'Photo 1',
+    camera: 'LEICA M6',
+    film: 'KODAK PORTRA 400',
   },
   {
-    id: 2,
-    src: 'https://picsum.photos/600/450?random=2',
-    alt: 'Street scene',
-    title: 'Urban Life',
-    description: 'A busy street corner in the city',
-    camera: 'Canon AE-1',
-    film: 'Fujifilm Pro 400H',
-    size: 'medium',
+    src: '/images/photography/000030160037.jpg',
+    alt: 'Photo 2',
+    camera: 'CANON AE-1',
+    film: 'FUJIFILM PRO 400H',
   },
   {
-    id: 3,
-    src: 'https://picsum.photos/400/300?random=3',
-    alt: 'Portrait',
-    title: 'Portrait Study',
-    description: 'A thoughtful portrait in natural light',
-    camera: 'Nikon F3',
-    film: 'Ilford HP5 Plus',
-    size: 'small',
+    src: '/images/photography/000032390019.jpg',
+    alt: 'Photo 3',
+    camera: 'NIKON F3',
+    film: 'ILFORD HP5 PLUS',
   },
   {
-    id: 4,
-    src: 'https://picsum.photos/800/600?random=4',
-    alt: 'City architecture',
-    title: 'Urban Geometry',
-    description: 'Modern architecture against the sky',
-    camera: 'Hasselblad 500C/M',
-    film: 'Kodak Ektachrome 100',
-    size: 'large',
+    src: '/images/photography/000032390021.jpg',
+    alt: 'Photo 4',
+    camera: 'HASSELBLAD 500C/M',
+    film: 'KODAK EKTACHROME 100',
   },
   {
-    id: 5,
-    src: 'https://picsum.photos/600/450?random=5',
-    alt: 'Forest path',
-    title: 'Forest Path',
-    description: 'A peaceful forest trail',
-    camera: 'Pentax K1000',
-    film: 'Fujifilm Velvia 50',
-    size: 'medium',
+    src: '/images/photography/000032390029.jpg',
+    alt: 'Photo 5',
+    camera: 'PENTAX K1000',
+    film: 'FUJIFILM VELVIA 50',
   },
   {
-    id: 6,
-    src: 'https://picsum.photos/400/300?random=6',
-    alt: 'Street market',
-    title: 'Market Day',
-    description: 'Vibrant colors at the local market',
-    camera: 'Olympus OM-1',
-    film: 'Kodak Tri-X 400',
-    size: 'small',
+    src: '/images/photography/000032390031.jpg',
+    alt: 'Photo 6',
+    camera: 'OLYMPUS OM-1',
+    film: 'KODAK TRI-X 400',
+  },
+  {
+    src: '/images/photography/000032390034.jpg',
+    alt: 'Photo 7',
+    camera: 'LEICA M6',
+    film: 'KODAK PORTRA 400',
+  },
+  {
+    src: '/images/photography/000033720004.jpg',
+    alt: 'Photo 8',
+    camera: 'CANON AE-1',
+    film: 'FUJIFILM PRO 400H',
+  },
+  {
+    src: '/images/photography/000033720014.jpg',
+    alt: 'Photo 9',
+    camera: 'NIKON F3',
+    film: 'ILFORD HP5 PLUS',
+  },
+  {
+    src: '/images/photography/000033720016.jpg',
+    alt: 'Photo 10',
+    camera: 'HASSELBLAD 500C/M',
+    film: 'KODAK EKTACHROME 100',
+  },
+  {
+    src: '/images/photography/000033720018.jpg',
+    alt: 'Photo 11',
+    camera: 'PENTAX K1000',
+    film: 'FUJIFILM VELVIA 50',
+  },
+  {
+    src: '/images/photography/000033720033.jpg',
+    alt: 'Photo 12',
+    camera: 'OLYMPUS OM-1',
+    film: 'KODAK TRI-X 400',
+  },
+  {
+    src: '/images/photography/Photo33_30.jpg',
+    alt: 'Photo 13',
+    camera: 'LEICA M6',
+    film: 'KODAK PORTRA 400',
   },
 ];
 ---
@@ -83,25 +102,13 @@ const photos = [
     <div class="photo-grid" id="photoGrid">
       {
         photos.map(photo => (
-          <div class={`photo-item photo-${photo.size}`}>
-            <div class="photo-outer-frame">
-              <div class="photo-side-text photo-side-left">
-                <span class="side-text">{photo.camera}</span>
-              </div>
-              <div class="photo-frame">
-                <div class="photo-image-wrapper">
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    loading="lazy"
-                    class="photo-image"
-                  />
-                </div>
-              </div>
-              <div class="photo-side-text photo-side-right">
-                <span class="side-text">{photo.film}</span>
-              </div>
-            </div>
+          <div class="photo-item">
+            <PhotoOuterFrame
+              src={photo.src}
+              alt={photo.alt}
+              camera={photo.camera}
+              film={photo.film}
+            />
           </div>
         ))
       }
@@ -112,6 +119,9 @@ const photos = [
 </Layout>
 
 <style>
+  /* Remove component-specific styles now handled by PhotoOuterFrame.astro */
+  /* Keep only grid, responsive, and general layout styles here. */
+
   .photography-gallery {
     max-width: 1400px;
     margin: 0 auto;
@@ -139,116 +149,14 @@ const photos = [
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: 200px;
     gap: 1rem;
     margin-bottom: 3rem;
   }
-
-  /* Photo size classes */
-  .photo-small {
-    grid-row: span 1;
-  }
-
-  .photo-medium {
-    grid-row: span 2;
-  }
-
-  .photo-large {
-    grid-row: span 3;
-  }
-
   .photo-item {
     opacity: 1;
     transform: scale(1);
     transition: all 0.3s ease;
-  }
-
-  .photo-outer-frame {
-    position: relative;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    padding: 0 2.5rem;
-    box-sizing: border-box;
-  }
-  .photo-frame {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    background: white;
-    border-radius: 0;
-    box-shadow: none;
-    overflow: visible;
-    padding: 0;
-    position: relative;
-  }
-  .photo-side-left,
-  .photo-side-right {
-    position: absolute;
-    width: 2.5rem;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .photo-outer-frame:hover .photo-side-left,
-  .photo-outer-frame:hover .photo-side-right {
-    opacity: 1;
-  }
-  .photo-side-left {
-    left: 0;
-    align-items: end;
-    justify-content: right;
-  }
-  .photo-side-right {
-    right: 0;
-    align-items: start;
-    justify-content: left;
-  }
-  .side-text {
-    display: block;
-    color: #222;
-    font-size: 1rem;
-    font-family: 'Inter', 'Arial', sans-serif;
-    letter-spacing: 0.1em;
-    font-weight: 500;
-    white-space: nowrap;
-    text-align: center;
-    user-select: text;
-    background: transparent;
-    padding: 0;
-    margin: 0;
-  }
-  .photo-side-left .side-text {
-    transform: rotate(-90deg) translate(100%, 0);
-    transform-origin: bottom right;
-  }
-  .photo-side-right .side-text {
-    transform: rotate(90deg) translate(0, -100%);
-    transform-origin: top left;
-  }
-  .photo-image-wrapper {
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    min-width: 0;
-  }
-  .photo-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 0;
-    box-shadow: none;
+    /* Remove grid-row span classes */
   }
 
   /* Responsive design */
