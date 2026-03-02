@@ -1,0 +1,64 @@
+---
+const CV_URL = 'https://github.com/nicovsj/cv/releases/latest/download/cv.pdf';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const isFr = lang === 'fr';
+const lastUpdatedLabel = isFr ? 'Dernière mise à jour :' : 'Last updated:';
+const loadingText = isFr ? 'Chargement...' : 'Loading...';
+const unknownText = isFr ? 'Inconnu' : 'Unknown';
+---
+
+<div class="cv-download">
+  <a href={CV_URL} rel="noopener noreferrer" download class="cv-link">
+    Link to my CV
+  </a>
+  <span class="cv-meta">
+    {lastUpdatedLabel}
+    <span id="cv-last-updated">{loadingText}</span>
+  </span>
+</div>
+
+<style>
+  .cv-download {
+    margin-top: 0.5rem;
+  }
+
+  .cv-link {
+    font-size: 1.2rem;
+  }
+
+  .cv-meta {
+    margin-left: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+</style>
+
+<script define:vars={{ unknownText }}>
+  async function updateCvLastUpdated() {
+    try {
+      const response = await fetch(
+        'https://api.github.com/repos/nicovsj/cv/releases/latest'
+      );
+      const data = await response.json();
+      const date = new Date(data.published_at);
+      const element = document.getElementById('cv-last-updated');
+      if (element) {
+        element.textContent = date.toLocaleDateString(
+          document.documentElement.lang === 'fr' ? 'fr-FR' : 'en-US'
+        );
+      }
+    } catch {
+      const element = document.getElementById('cv-last-updated');
+      if (element) {
+        element.textContent = unknownText;
+      }
+    }
+  }
+
+  updateCvLastUpdated();
+</script>

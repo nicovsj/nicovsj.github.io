@@ -1,9 +1,5 @@
 ---
-import {
-  getLangFromUrl,
-  useTranslations,
-  useTranslatedPath,
-} from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import LanguageToggle from '../components/LanguageToggle.astro';
 import DarkModeToggle from '../components/DarkModeToggle.astro';
 
@@ -15,7 +11,6 @@ interface Props {
 const { title, description = 'Academic CV and Research Profile' } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 ---
 
 <!doctype html>
@@ -56,10 +51,6 @@ const translatePath = useTranslatedPath(lang);
   <body>
     <header class="site-header">
       <nav>
-        <div class="nav-links">
-          <a href={translatePath('/')}>{t('nav.home')}</a>
-          <a href={translatePath('/cv')}>{t('nav.cv')}</a>
-        </div>
         <div class="nav-controls">
           <DarkModeToggle />
           <LanguageToggle />
@@ -85,35 +76,16 @@ const translatePath = useTranslatedPath(lang);
 
   nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
   }
 
   .nav-controls {
     display: flex;
     align-items: center;
     gap: 1rem;
-  }
-
-  nav a {
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-    font-size: 1.1rem;
-  }
-
-  nav a:hover {
-    color: var(--color-accent);
-    text-decoration: underline;
   }
 
   /* Global link hover styles */
@@ -141,20 +113,11 @@ const translatePath = useTranslatedPath(lang);
   /* Responsive design */
   @media (max-width: 900px) {
     nav {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .nav-links {
       gap: 1rem;
     }
 
     .nav-controls {
       gap: 0.5rem;
-    }
-
-    nav a {
-      font-size: 1rem;
     }
   }
 </style>

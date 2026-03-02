@@ -46,7 +46,5 @@ export const ui = {
 } as const;
 
 export const routes = {
-  fr: {
-    cv: 'cv',
-  },
+  fr: {},
 };
