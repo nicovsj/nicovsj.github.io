@@ -1,0 +1,23 @@
+version: '3'
+
+tasks:
+  default:
+    desc: Start the dev server and test the webpage locally
+    cmds:
+      - npm run dev
+
+  dev:
+    desc: Start the Astro dev server
+    cmds:
+      - npm run dev
+
+  build:
+    desc: Build the site for production
+    cmds:
+      - npm run build
+
+  preview:
+    desc: Preview the production build locally
+    cmds:
+      - npm run build
+      - npm run preview
