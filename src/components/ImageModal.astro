@@ -1,0 +1,129 @@
+---
+export interface Props {
+  open: boolean;
+  src: string;
+  alt: string;
+  camera: string;
+  film: string;
+}
+const { open, src, alt, camera, film } = Astro.props;
+---
+
+{
+  open && (
+    <div class="modal-overlay" tabindex="-1" role="dialog">
+      <div class="modal-content">
+        <div class="modal-side-text modal-side-left">
+          <span class="side-text">{camera}</span>
+        </div>
+        <button
+          class="modal-close"
+          aria-label="Close"
+          onclick="this.dispatchEvent(new CustomEvent('closemodal', { bubbles: true }))"
+        >
+          &times;
+        </button>
+        <img src={src} alt={alt} class="modal-image" />
+        <div class="modal-side-text modal-side-right">
+          <span class="side-text">{film}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  .modal-content {
+    position: relative;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 4px;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .modal-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    z-index: 10000;
+    padding: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+  .modal-close:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  .modal-image {
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+  }
+  .modal-side-text {
+    position: absolute;
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    opacity: 1;
+    pointer-events: none;
+  }
+  .modal-side-left {
+    left: 0;
+    align-items: end;
+    justify-content: right;
+  }
+  .modal-side-right {
+    right: 0;
+    align-items: start;
+    justify-content: left;
+  }
+  .side-text {
+    display: block;
+    color: #222;
+    font-size: 1rem;
+    font-family: 'Hack', 'Hack Regular', monospace;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: center;
+    user-select: text;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+  }
+  .modal-side-left .side-text {
+    transform: rotate(-90deg) translate(100%, 0);
+    transform-origin: bottom right;
+  }
+  .modal-side-right .side-text {
+    transform: rotate(90deg) translate(0, -100%);
+    transform-origin: top left;
+  }
+</style>

@@ -102,7 +102,12 @@ const photos = [
     <div class="photo-grid" id="photoGrid">
       {
         photos.map(photo => (
-          <div class="photo-item">
+          <div
+            class="photo-item"
+            tabindex="0"
+            role="button"
+            aria-label={photo.alt}
+          >
             <PhotoOuterFrame
               src={photo.src}
               alt={photo.alt}
@@ -114,7 +119,20 @@ const photos = [
       }
     </div>
 
-    <!-- Remove the lightbox modal and related CSS/JS -->
+    <div id="photo-modal" class="modal-overlay" style="display:none;">
+      <div class="modal-content">
+        <div class="modal-side-text modal-side-left">
+          <span class="side-text" id="modal-camera"></span>
+        </div>
+        <button class="modal-close" id="modal-close" aria-label="Close"
+          >&times;</button
+        >
+        <img src="" alt="" class="modal-image" id="modal-img" />
+        <div class="modal-side-text modal-side-right">
+          <span class="side-text" id="modal-film"></span>
+        </div>
+      </div>
+    </div>
   </article>
 </Layout>
 
@@ -185,4 +203,147 @@ const photos = [
   }
 </style>
 
-<!-- No <script> block needed -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('photo-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalCamera = document.getElementById('modal-camera');
+    const modalFilm = document.getElementById('modal-film');
+    const modalClose = document.getElementById('modal-close');
+
+    function openModal(item) {
+      const img = item.querySelector('img');
+      const camera = item.querySelector(
+        '.photo-side-left .side-text'
+      ).textContent;
+      const film = item.querySelector(
+        '.photo-side-right .side-text'
+      ).textContent;
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modalCamera.textContent = camera;
+      modalFilm.textContent = film;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.querySelectorAll('.photo-item').forEach(item => {
+      item.addEventListener('click', () => openModal(item));
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(item);
+        }
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+    });
+  });
+</script>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  .modal-content {
+    position: relative;
+    background: white;
+    padding: 1rem;
+    border-radius: 4px;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .modal-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    z-index: 10000;
+    padding: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+  .modal-close:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  .modal-image {
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+  }
+  .modal-side-text {
+    position: absolute;
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    opacity: 1;
+    pointer-events: none;
+  }
+  .modal-side-left {
+    left: 0;
+    align-items: end;
+    justify-content: right;
+  }
+  .modal-side-right {
+    right: 0;
+    align-items: start;
+    justify-content: left;
+  }
+  .side-text {
+    display: block;
+    color: #222;
+    font-size: 1rem;
+    font-family: 'Hack', 'Hack Regular', monospace;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: center;
+    user-select: text;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+  }
+  .modal-side-left .side-text {
+    transform: rotate(-90deg) translate(100%, 0);
+    transform-origin: bottom right;
+  }
+  .modal-side-right .side-text {
+    transform: rotate(90deg) translate(0, -100%);
+    transform-origin: top left;
+  }
+</style>

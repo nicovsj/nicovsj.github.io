@@ -9,7 +9,14 @@ export interface Props {
 const { src, alt, camera, film, children } = Astro.props;
 ---
 
-<div class="photo-outer-frame">
+<div
+  class="photo-outer-frame"
+  data-photo-frame
+  data-photo-src={src}
+  data-photo-alt={alt}
+  data-photo-camera={camera}
+  data-photo-film={film}
+>
   <div class="photo-side-text photo-side-left">
     <span class="side-text">{camera}</span>
   </div>
@@ -19,7 +26,13 @@ const { src, alt, camera, film, children } = Astro.props;
         children ? (
           children
         ) : (
-          <img src={src} alt={alt} loading="lazy" class="photo-image" />
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            class="photo-image"
+            data-photo-image
+          />
         )
       }
     </div>
@@ -39,6 +52,7 @@ const { src, alt, camera, film, children } = Astro.props;
     width: 100%;
     padding: 0 2.5rem;
     box-sizing: border-box;
+    cursor: pointer;
   }
   .photo-frame {
     flex: 1 1 auto;
