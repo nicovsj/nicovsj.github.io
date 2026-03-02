@@ -9,7 +9,6 @@ export const showDefaultLang = false;
 export const ui = {
   en: {
     'nav.home': 'Home',
-    'nav.publications': 'Publications',
     'nav.cv': 'CV',
     'language.toggle': 'Language',
     'footer.copyright': 'All rights reserved',
@@ -18,6 +17,9 @@ export const ui = {
     'profile.address': 'Address',
     'profile.links': 'Links',
     'abstract.title': 'Abstract',
+    'publications.title': 'Publications',
+    'publications.conference': 'Conference Papers',
+    'publications.demo': 'Demo Papers',
     'email.me': 'E-mail me',
     'email.copy': 'Copy e-mail',
     'email.copied': 'Copied!',
@@ -25,7 +27,6 @@ export const ui = {
   },
   fr: {
     'nav.home': 'Accueil',
-    'nav.publications': 'Publications',
     'nav.cv': 'CV',
     'language.toggle': 'Langue',
     'footer.copyright': 'Tous droits réservés',
@@ -34,6 +35,9 @@ export const ui = {
     'profile.address': 'Adresse',
     'profile.links': 'Liens',
     'abstract.title': 'Résumé',
+    'publications.title': 'Publications',
+    'publications.conference': 'Articles de Conférence',
+    'publications.demo': 'Articles de Démonstration',
     'email.me': "M'écrire",
     'email.copy': 'Copier e-mail',
     'email.copied': 'Copié !',
@@ -43,7 +47,6 @@ export const ui = {
 
 export const routes = {
   fr: {
-    publications: 'publications',
     cv: 'cv',
   },
 };
