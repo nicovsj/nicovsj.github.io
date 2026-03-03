@@ -17,7 +17,6 @@ tasks:
       - npm run build
 
   preview:
-    desc: Preview the production build locally
+    desc: Start the dev server with hot reload
     cmds:
-      - npm run build
-      - npm run preview
+      - npm run dev
