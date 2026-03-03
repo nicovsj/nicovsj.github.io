@@ -65,15 +65,16 @@ const t = useTranslations(lang as 'en' | 'fr');
 <style>
   .contact-block {
     margin-top: 1rem;
+    line-height: 1.3;
   }
 
   .contact-section {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .contact-label {
     font-weight: bold;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
   }
 
   .address-link {
@@ -91,6 +92,7 @@ const t = useTranslations(lang as 'en' | 'fr');
     justify-content: space-between;
     gap: 1em;
     margin-left: 0.5rem;
+    line-height: 1.25;
   }
 
   .social-links {
@@ -98,6 +100,38 @@ const t = useTranslations(lang as 'en' | 'fr');
     align-items: center;
     gap: 0.5rem;
     margin-left: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .contact-block {
+      line-height: 1.7;
+    }
+
+    .contact-section {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-label {
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-detail {
+      line-height: 1.5;
+      margin-bottom: 0.2rem;
+    }
+
+    .address-link .contact-detail:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-info {
+      line-height: 1.5;
+    }
+
+    .social-links {
+      justify-content: center;
+      margin-left: 0;
+    }
   }
 
   .copy-btn {
@@ -130,6 +164,7 @@ const t = useTranslations(lang as 'en' | 'fr');
 
   .contact-info {
     margin-top: 1rem;
+    line-height: 1.3;
   }
 
   .contact-info a {
