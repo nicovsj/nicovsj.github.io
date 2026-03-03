@@ -7,7 +7,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const isFr = lang === 'fr';
-const lastUpdatedLabel = isFr ? 'Dernière mise à jour :' : 'Last updated:';
+const lastUpdatedLabel = isFr ? 'Mis à jour :' : 'Updated:';
 const loadingText = isFr ? 'Chargement...' : 'Loading...';
 const unknownText = isFr ? 'Inconnu' : 'Unknown';
 ---
