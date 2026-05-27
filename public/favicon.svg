@@ -1,16 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
-    <!-- Contact/Person Icon -->
-    <circle cx="64" cy="40" r="20" stroke="currentColor" stroke-width="8" fill="none"/>
-    <path d="M20 108c0-24.3 19.7-44 44-44s44 19.7 44 44" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/>
-
-    <style>
-        circle, path {
-            color: #000;
-        }
-        @media (prefers-color-scheme: dark) {
-            circle, path {
-                color: #FFF;
-            }
-        }
-    </style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    /* This ensures the symbol switches to white if the browser is in dark mode */
+    text { fill: #1a1a1a; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #ffffff; }
+    }
+  </style>
+  <text x="50%" y="55%" font-size="85" font-family="Georgia, serif" dom-weight="bold" text-anchor="middle" dominant-baseline="middle">⋈</text>
 </svg>
