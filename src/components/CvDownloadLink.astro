@@ -48,9 +48,7 @@ const unknownText = isFr ? 'Inconnu' : 'Unknown';
       const date = new Date(data.published_at);
       const element = document.getElementById('cv-last-updated');
       if (element) {
-        element.textContent = date.toLocaleDateString(
-          document.documentElement.lang === 'fr' ? 'fr-FR' : 'en-US'
-        );
+        element.textContent = date.toISOString().slice(0, 10);
       }
     } catch {
       const element = document.getElementById('cv-last-updated');
