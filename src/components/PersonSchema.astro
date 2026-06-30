@@ -1,0 +1,24 @@
+---
+const siteUrl = Astro.site?.toString() ?? 'https://nicovsj.me';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Nicolás Van Sint Jan',
+  url: siteUrl,
+  image: new URL('/images/selfie.jpg', siteUrl).toString(),
+  jobTitle: 'PhD Student',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'IRIF',
+    url: 'https://www.irif.fr',
+  },
+  sameAs: [
+    'https://github.com/nicovsj',
+    'https://linkedin.com/in/nicovsj',
+    'https://orcid.org/my-orcid?orcid=0009-0005-2933-528X',
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

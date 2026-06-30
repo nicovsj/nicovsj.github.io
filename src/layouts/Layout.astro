@@ -2,6 +2,7 @@
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import LanguageToggle from '../components/LanguageToggle.astro';
 import DarkModeToggle from '../components/DarkModeToggle.astro';
+import PersonSchema from '../components/PersonSchema.astro';
 
 interface Props {
   title: string;
@@ -38,6 +39,8 @@ const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_US';
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+
+    <PersonSchema />
 
     <!-- LaTeX.css -->
     <link rel="stylesheet" href="https://latex.vercel.app/style.css" />
@@ -79,61 +82,59 @@ const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_US';
     <footer>
       <p>&copy; {new Date().getFullYear()} - {t('footer.copyright')}</p>
     </footer>
-  </body>
-</html>
+  </body><style is:global>
+    /* Custom styles to work with LaTeX.css */
+    .site-header {
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--color-border);
+    }
 
-<style is:global>
-  /* Custom styles to work with LaTeX.css */
-  .site-header {
-    padding: 2rem 0;
-    margin-bottom: 3rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-
-  .nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  /* Global link hover styles */
-  a {
-    text-decoration: none;
-    transition: text-decoration 0.2s ease;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  main {
-    min-height: calc(100vh - 200px);
-  }
-
-  footer {
-    margin-top: 3rem;
-    padding: 2rem 0;
-    text-align: center;
-    border-top: 1px solid var(--color-border);
-    color: var(--color-text-muted);
-  }
-
-  /* Responsive design */
-  @media (max-width: 900px) {
     nav {
-      gap: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
     }
 
     .nav-controls {
-      gap: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
-  }
-</style>
+
+    /* Global link hover styles */
+    a {
+      text-decoration: none;
+      transition: text-decoration 0.2s ease;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      min-height: calc(100vh - 200px);
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+    }
+
+    /* Responsive design */
+    @media (max-width: 900px) {
+      nav {
+        gap: 1rem;
+      }
+
+      .nav-controls {
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</html>
