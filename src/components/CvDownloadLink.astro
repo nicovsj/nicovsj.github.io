@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n/utils';
+
 const CV_URL = 'https://github.com/nicovsj/cv/releases/latest/download/cv.pdf';
 
 interface Props {
@@ -6,19 +8,17 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-const isFr = lang === 'fr';
-const lastUpdatedLabel = isFr ? 'Mis à jour :' : 'Updated:';
-const loadingText = isFr ? 'Chargement...' : 'Loading...';
-const unknownText = isFr ? 'Inconnu' : 'Unknown';
+const t = useTranslations(lang as 'en' | 'fr');
+const unknownText = t('cv.unknown');
 ---
 
 <div class="cv-download">
   <a href={CV_URL} rel="noopener noreferrer" download class="cv-link">
-    Link to my CV
+    {t('cv.link')}
   </a>
   <span class="cv-meta">
-    {lastUpdatedLabel}
-    <span id="cv-last-updated">{loadingText}</span>
+    {t('cv.updated')}
+    <span id="cv-last-updated">{t('cv.loading')}</span>
   </span>
 </div>
 

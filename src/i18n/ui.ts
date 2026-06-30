@@ -26,6 +26,10 @@ export const ui = {
     'email.copy': 'Copy e-mail',
     'email.copied': 'Copied!',
     'email.or': 'or',
+    'cv.link': 'Link to my CV',
+    'cv.updated': 'Updated:',
+    'cv.loading': 'Loading...',
+    'cv.unknown': 'Unknown',
   },
   fr: {
     'nav.home': 'Accueil',
@@ -46,6 +50,10 @@ export const ui = {
     'email.copy': 'Copier e-mail',
     'email.copied': 'Copié !',
     'email.or': 'ou',
+    'cv.link': 'Lien vers mon CV',
+    'cv.updated': 'Mis à jour :',
+    'cv.loading': 'Chargement...',
+    'cv.unknown': 'Inconnu',
   },
 } as const;
 
