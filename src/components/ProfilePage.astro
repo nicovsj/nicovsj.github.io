@@ -11,10 +11,9 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const isFr = lang === 'fr';
 ---
 
-<Layout title="Nicolás Van Sint Jan">
+<Layout title="Nicolás Van Sint Jan" description={t('meta.description')}>
   <article class="indent-pars">
     <div class="profile">
       <div class="profile-image">
@@ -23,23 +22,8 @@ const isFr = lang === 'fr';
       <div class="profile-content">
         <div class="name">Nicolás Van Sint Jan</div>
         <div class="title">
-          {
-            isFr ? (
-              <>
-                Doctorant @{' '}
-                <a href="https://www.irif.fr" target="_blank">
-                  IRIF
-                </a>
-              </>
-            ) : (
-              <>
-                PhD Student @{' '}
-                <a href="https://www.irif.fr" target="_blank">
-                  IRIF
-                </a>
-              </>
-            )
-          }
+          {t('profile.title')}{' '}
+          <a href="https://www.irif.fr" target="_blank">IRIF</a>
         </div>
         <CvDownloadLink lang={lang} />
         <ContactSection lang={lang} />
@@ -48,62 +32,7 @@ const isFr = lang === 'fr';
 
     <div class="abstract">
       <h2>{t('abstract.title')}</h2>
-      <p>
-        {
-          isFr ? (
-            <>
-              Je suis doctorant en première année en informatique à l'
-              <a href="https://www.irif.fr" target="_blank">
-                IRIF
-              </a>{' '}
-              à Paris, sous la direction de{' '}
-              <a href="http://libk.in/" target="_blank">
-                Leonid Libkin
-              </a>
-              ,{' '}
-              <a href="https://www.irif.fr/~cristina/" target="_blank">
-                Cristina Sirangelo
-              </a>
-              , et{' '}
-              <a
-                href="https://web4.ensiie.fr/~stefania.dumbrava/"
-                target="_blank"
-              >
-                Ştefania Dumbravă
-              </a>
-              . Mes intérêts de recherche portent sur la théorie des bases de
-              données, avec un focus sur la sémantique des langages de requête.
-              J'ai de l'expérience en théorie des automates, algorithmes
-              d'énumération, et développement full-stack.
-            </>
-          ) : (
-            <>
-              I'm a second year PhD student in Computer Science at{' '}
-              <a href="https://www.irif.fr" target="_blank">
-                IRIF
-              </a>{' '}
-              in Paris, under the supervision of{' '}
-              <a href="http://libk.in/" target="_blank">
-                Leonid Libkin
-              </a>
-              ,{' '}
-              <a href="https://www.irif.fr/~cristina/" target="_blank">
-                Cristina Sirangelo
-              </a>
-              , and{' '}
-              <a
-                href="https://web4.ensiie.fr/~stefania.dumbrava/"
-                target="_blank"
-              >
-                Ştefania Dumbravă
-              </a>
-              . My research focuses on database theory, particularly the
-              semantics of query languages. I also have experience in automata
-              theory, enumeration algorithms, and full-stack development.
-            </>
-          )
-        }
-      </p>
+      <p set:html={t('abstract.body')} />
     </div>
 
     <PublicationsSection lang={lang} />
