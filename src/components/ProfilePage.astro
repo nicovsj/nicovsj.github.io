@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactSection from './ContactSection.astro';
+import PublicationsSection from './PublicationsSection.astro';
+import CvDownloadLink from './CvDownloadLink.astro';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: 'en' | 'fr';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const isFr = lang === 'fr';
+---
+
+<Layout title="Nicolás Van Sint Jan">
+  <article class="indent-pars">
+    <div class="profile">
+      <div class="profile-image">
+        <img src="/images/selfie.jpg" alt="Nicolás Van Sint Jan" />
+      </div>
+      <div class="profile-content">
+        <div class="name">Nicolás Van Sint Jan</div>
+        <div class="title">
+          {
+            isFr ? (
+              <>
+                Doctorant @{' '}
+                <a href="https://www.irif.fr" target="_blank">
+                  IRIF
+                </a>
+              </>
+            ) : (
+              <>
+                PhD Student @{' '}
+                <a href="https://www.irif.fr" target="_blank">
+                  IRIF
+                </a>
+              </>
+            )
+          }
+        </div>
+        <CvDownloadLink lang={lang} />
+        <ContactSection lang={lang} />
+      </div>
+    </div>
+
+    <div class="abstract">
+      <h2>{t('abstract.title')}</h2>
+      <p>
+        {
+          isFr ? (
+            <>
+              Je suis doctorant en première année en informatique à l'
+              <a href="https://www.irif.fr" target="_blank">
+                IRIF
+              </a>{' '}
+              à Paris, sous la direction de{' '}
+              <a href="http://libk.in/" target="_blank">
+                Leonid Libkin
+              </a>
+              ,{' '}
+              <a href="https://www.irif.fr/~cristina/" target="_blank">
+                Cristina Sirangelo
+              </a>
+              , et{' '}
+              <a
+                href="https://web4.ensiie.fr/~stefania.dumbrava/"
+                target="_blank"
+              >
+                Ştefania Dumbravă
+              </a>
+              . Mes intérêts de recherche portent sur la théorie des bases de
+              données, avec un focus sur la sémantique des langages de requête.
+              J'ai de l'expérience en théorie des automates, algorithmes
+              d'énumération, et développement full-stack.
+            </>
+          ) : (
+            <>
+              I'm a second year PhD student in Computer Science at{' '}
+              <a href="https://www.irif.fr" target="_blank">
+                IRIF
+              </a>{' '}
+              in Paris, under the supervision of{' '}
+              <a href="http://libk.in/" target="_blank">
+                Leonid Libkin
+              </a>
+              ,{' '}
+              <a href="https://www.irif.fr/~cristina/" target="_blank">
+                Cristina Sirangelo
+              </a>
+              , and{' '}
+              <a
+                href="https://web4.ensiie.fr/~stefania.dumbrava/"
+                target="_blank"
+              >
+                Ştefania Dumbravă
+              </a>
+              . My research focuses on database theory, particularly the
+              semantics of query languages. I also have experience in automata
+              theory, enumeration algorithms, and full-stack development.
+            </>
+          )
+        }
+      </p>
+    </div>
+
+    <PublicationsSection lang={lang} />
+  </article>
+</Layout>
+
+<style>
+  .profile {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .profile-image {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+  }
+
+  .profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .profile-content {
+    display: block;
+    gap: 0.2rem;
+  }
+
+  .name {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .title {
+    font-size: 1.4rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .profile {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
