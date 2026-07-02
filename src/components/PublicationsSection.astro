@@ -21,7 +21,12 @@ const categoryTitleKeys = {
 ---
 
 <div class="publications">
-  <h2>{t('publications.title')}</h2>
+  <div class="publications-header">
+    <h2>{t('publications.title')}</h2>
+    <a href="/publications.bib" class="bibtex-link">
+      {t('publications.bibtex')}
+    </a>
+  </div>
 
   {
     categories.map(category => (
@@ -73,8 +78,21 @@ const categoryTitleKeys = {
     margin-top: 2rem;
   }
 
-  .publications h2 {
+  .publications-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
     margin-bottom: 1rem;
+  }
+
+  .publications-header h2 {
+    margin-bottom: 0;
+  }
+
+  .bibtex-link {
+    font-size: 0.95rem;
   }
 
   .publications h3 {
