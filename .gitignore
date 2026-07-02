@@ -3,6 +3,9 @@ dist/
 # generated types
 .astro/
 
+# synced CV asset (fetched at build time)
+public/cv.pdf
+
 # dependencies
 node_modules/
 
