@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { defaultLang, languages } from '../i18n/ui';
 import LanguageToggle from '../components/LanguageToggle.astro';
 import DarkModeToggle from '../components/DarkModeToggle.astro';
 import PersonSchema from '../components/PersonSchema.astro';
@@ -15,6 +16,21 @@ const t = useTranslations(lang);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/images/selfie.jpg', Astro.site);
 const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_US';
+
+function getAlternateUrl(targetLang: string) {
+  const segments = Astro.url.pathname.split('/').filter(Boolean);
+  if (segments.length > 0 && targetLang in languages) {
+    segments[0] = targetLang;
+    return new URL(`/${segments.join('/')}/`, Astro.site);
+  }
+  return new URL(`/${targetLang}/`, Astro.site);
+}
+
+const alternateUrls = Object.keys(languages).map(locale => ({
+  locale,
+  href: getAlternateUrl(locale),
+}));
+const defaultAlternateUrl = getAlternateUrl(defaultLang);
 ---
 
 <!doctype html>
@@ -26,6 +42,12 @@ const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_US';
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    {
+      alternateUrls.map(({ locale, href }) => (
+        <link rel="alternate" hreflang={locale} href={href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={defaultAlternateUrl} />
     <title>{title}</title>
 
     <meta property="og:type" content="website" />
@@ -82,59 +104,60 @@ const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_US';
     <footer>
       <p>&copy; {new Date().getFullYear()} - {t('footer.copyright')}</p>
     </footer>
-  </body><style is:global>
-    /* Custom styles to work with LaTeX.css */
-    .site-header {
-      padding: 2rem 0;
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--color-border);
-    }
+    <style is:global>
+      /* Custom styles to work with LaTeX.css */
+      .site-header {
+        padding: 2rem 0;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--color-border);
+      }
 
-    nav {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    .nav-controls {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    /* Global link hover styles */
-    a {
-      text-decoration: none;
-      transition: text-decoration 0.2s ease;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      min-height: calc(100vh - 200px);
-    }
-
-    footer {
-      margin-top: 3rem;
-      padding: 2rem 0;
-      text-align: center;
-      border-top: 1px solid var(--color-border);
-      color: var(--color-text-muted);
-    }
-
-    /* Responsive design */
-    @media (max-width: 900px) {
       nav {
-        gap: 1rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
       }
 
       .nav-controls {
-        gap: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
       }
-    }
-  </style>
+
+      /* Global link hover styles */
+      a {
+        text-decoration: none;
+        transition: text-decoration 0.2s ease;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      main {
+        min-height: calc(100vh - 200px);
+      }
+
+      footer {
+        margin-top: 3rem;
+        padding: 2rem 0;
+        text-align: center;
+        border-top: 1px solid var(--color-border);
+        color: var(--color-text-muted);
+      }
+
+      /* Responsive design */
+      @media (max-width: 900px) {
+        nav {
+          gap: 1rem;
+        }
+
+        .nav-controls {
+          gap: 0.5rem;
+        }
+      }
+    </style>
+  </body>
 </html>
