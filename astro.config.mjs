@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://nicovsj.me',
+  site: 'https://nicovsj.com',
   output: 'static',
   integrations: [sitemap()],
 });
